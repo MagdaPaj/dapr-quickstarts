@@ -10,6 +10,11 @@ data:
     receivers:
       zipkin:
         endpoint: 0.0.0.0:9411
+      # otlp:
+      #   protocols:
+      #     grpc:
+      #     http:
+            # include_metadata: true
     extensions:
       health_check:
       pprof:
@@ -37,6 +42,7 @@ data:
       pipelines:
         traces:
           receivers: [zipkin]
+          # receivers: [otlp]
           # List your exporter here.
           exporters: [azuremonitor,logging]
 ---
@@ -53,6 +59,14 @@ spec:
     port: 9411
     protocol: TCP
     targetPort: 9411
+  # - name: grpc-otlp
+  #   port: 4317
+  #   targetPort: 4317
+  #   protocol: TCP
+  # - name: http-otlp
+  #   port: 4318
+  #   targetPort: 4318
+  #   protocol: TCP
   selector:
     component: otel-collector
 ---
@@ -89,6 +103,8 @@ spec:
             memory: 400Mi
         ports:
           - containerPort: 9411 # Default endpoint for Zipkin receiver.
+          # - containerPort: 4317 # Default endpoint for otlp grpc receiver.
+          # - containerPort: 4318 # Default endpoint for otlp HTTP receiver.
         volumeMounts:
           - name: otel-collector-config-vol
             mountPath: /conf
