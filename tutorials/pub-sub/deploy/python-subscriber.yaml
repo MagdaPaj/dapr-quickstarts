@@ -17,6 +17,7 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "python-subscriber"
         dapr.io/app-port: "5001"
+        dapr.io/config: "appconfig"
     spec:
       containers:
       - name: python-subscriber
