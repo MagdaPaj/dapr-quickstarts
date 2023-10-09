@@ -18,6 +18,8 @@ spec:
         dapr.io/app-id: "node-subscriber"
         dapr.io/app-port: "3000"
         dapr.io/config: "appconfig"
+        dapr.io/enable-metrics: "true"
+        dapr.io/metrics-port: "9090"
     spec:
       containers:
       - name: node-subscriber

@@ -12,3 +12,6 @@ spec:
     #   endpointAddress: "http://otel-collector.default.svc.cluster.local:4317/v1/traces"
     #   isSecure: false
     #   protocol: "grpc"
+  metrics:
+    enabled: true
+
